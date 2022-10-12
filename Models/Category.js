@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+Schema = mongoose.Schema;
 
 const CategorySchema = new mongoose.Schema(
   {
@@ -8,8 +9,9 @@ const CategorySchema = new mongoose.Schema(
       unique: true,
     },
     userId: {
-      type: String,
+      type: Schema.Types.ObjectId,
       required: true,
+      ref: "User",
     },
   },
   { timestamps: true }
