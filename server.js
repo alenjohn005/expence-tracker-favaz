@@ -11,6 +11,7 @@ const cors = require("cors");
 const authRoute = require("./Routes/AuthRouter");
 const catogoryRoute = require("./Routes/CategoryRouter");
 const transactionRoute = require("./Routes/TransactionRouter");
+const errorHandler = require("./middleware/error");
 
 const router = express.Router();
 app.use(express.json());
@@ -39,9 +40,14 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+app.use("/api/users", require("./NewRoutes/NewAuth"));
+app.use("/api/", require("./NewRoutes/TrackerRoutes"));
 app.use("/api/auth", authRoute);
 app.use("/api/catogory", catogoryRoute);
 app.use("/api/transaction", transactionRoute);
+
+// Error Handler Middleware
+app.use(errorHandler);
 
 // port connection with URL
 app.listen(process.env.PORT, () => {

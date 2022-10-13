@@ -7,6 +7,14 @@ const TransactionSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    note: {
+      type: String,
+      required: true,
+    },
+    transactionDate: {
+      type: Date,
+      required: true,
+    },
     categoryId: {
       type: Schema.Types.ObjectId,
       required: true,
@@ -17,8 +25,8 @@ const TransactionSchema = new mongoose.Schema(
       required: true,
       ref: "User",
     },
-    transactionType: {
-      type: String,
+    remind: {
+      type: Boolean,
       required: true,
     },
   },

@@ -18,10 +18,34 @@ router.post("/add-transaction", async (req, res) => {
 });
 
 //Get Category
-router.get("/get-transaction/:userId", async (req, res) => {
+router.get("/get-transaction", async (req, res) => {
   try {
-    const transaction = await Transaction.find({ userId: req.params.userId });
-    res.status(200).json(transaction);
+    console.log(req.query);
+    if (
+      req.query.startDate !== "" &&
+      req.query.endDate !== "" &&
+      req.query.transactionType !== ""
+    ) {
+      console.log("data-----");
+      const transaction = await Transaction.find({
+        userId: req.query.userId,
+        createdAt: {
+          $gte: new Date(req.query.startDate),
+          $lte: new Date(req.query.endDate),
+        },
+        transactionType: req.query.transactionType,
+      });
+      res.status(200).json(transaction);
+    } else if (req.query.startDate && req.query.endDate) {
+      const transactionWithoutType = await Transaction.find({
+        userId: req.query.userId,
+        createdAt: {
+          $gte: new Date(req.query.startDate),
+          $lte: new Date(req.query.endDate),
+        },
+      });
+      res.status(200).json(transactionWithoutType);
+    }
   } catch (err) {
     res.status(500).json(err);
   }
