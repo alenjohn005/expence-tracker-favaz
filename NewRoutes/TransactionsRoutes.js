@@ -23,7 +23,7 @@ const addTransaction = async (req, res, next) => {
       note,
       transactionDate: new Date(),
       categoryId,
-      remind,
+      remind: false,
       transactionType,
       userId: _id,
     });

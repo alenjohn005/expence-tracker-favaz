@@ -8,9 +8,6 @@ const cors = require("cors");
 /**
  * Getting the Routers
  */
-const authRoute = require("./Routes/AuthRouter");
-const catogoryRoute = require("./Routes/CategoryRouter");
-const transactionRoute = require("./Routes/TransactionRouter");
 const errorHandler = require("./middleware/error");
 
 const router = express.Router();
@@ -43,9 +40,6 @@ app.get("/", (req, res) => {
 app.use("/api/users", require("./NewRoutes/NewAuth"));
 app.use("/api/catogory", require("./NewRoutes/CatogoryRoutes"));
 app.use("/api/transaction", require("./NewRoutes/TransactionsRoutes"));
-// app.use("/api/auth", authRoute);
-// app.use("/api/catogory", catogoryRoute);
-// app.use("/api/transaction", transactionRoute);
 
 // Error Handler Middleware
 app.use(errorHandler);
