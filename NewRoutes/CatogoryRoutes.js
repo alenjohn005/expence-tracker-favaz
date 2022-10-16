@@ -46,12 +46,12 @@ const getCategories = async (req, res, next) => {
   }
   try {
     // Adds new Category Details Data
-    const transactionDetails = await Transactions.find({ userId: _id });
+    const transactions = await Transactions.find({ userId: _id });
     const categories = await Category.find({ userId: _id });
 
-    if (transactionDetails && categories) {
+    if (transactions && categories) {
       const newFullCategoryData = categories.map((each) => {
-        const transactionDetailsData = transactionDetails.filter(
+        const transactionsData = transactions.filter(
           (eachTransction) =>
             eachTransction.categoryId.toString() === each._id.toString()
         );
@@ -60,7 +60,7 @@ const getCategories = async (req, res, next) => {
           id: each._id,
           description: each.description,
           totalAmount: null,
-          transactionDetails: [...transactionDetailsData],
+          transactions: [...transactionsData],
         };
         return newdata;
       });
