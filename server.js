@@ -41,10 +41,11 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", require("./NewRoutes/NewAuth"));
-app.use("/api/", require("./NewRoutes/TrackerRoutes"));
-app.use("/api/auth", authRoute);
-app.use("/api/catogory", catogoryRoute);
-app.use("/api/transaction", transactionRoute);
+app.use("/api/catogory", require("./NewRoutes/CatogoryRoutes"));
+app.use("/api/transaction", require("./NewRoutes/TransactionsRoutes"));
+// app.use("/api/auth", authRoute);
+// app.use("/api/catogory", catogoryRoute);
+// app.use("/api/transaction", transactionRoute);
 
 // Error Handler Middleware
 app.use(errorHandler);

@@ -9,7 +9,6 @@ const TransactionSchema = new mongoose.Schema(
     },
     note: {
       type: String,
-      required: true,
     },
     transactionDate: {
       type: Date,
@@ -29,8 +28,12 @@ const TransactionSchema = new mongoose.Schema(
       type: Boolean,
       required: true,
     },
+    transactionType: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Transaction", TransactionSchema);
+module.exports = mongoose.model("Transactions", TransactionSchema);
