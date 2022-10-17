@@ -60,7 +60,7 @@ const getCategories = async (req, res, next) => {
           id: each._id,
           description: each.description,
           totalAmount: null,
-          transactionDetails: [...transactionDetailsData],
+          transactions: [...transactionDetailsData],
         };
         return newdata;
       });

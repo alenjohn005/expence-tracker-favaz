@@ -7,7 +7,8 @@ const Transactions = require("../Models/Transactions");
 
 // Controllers
 const addTransaction = async (req, res, next) => {
-  const { amount, note, categoryId, remind, transactionType } = req.body;
+  const { amount, note, categoryId, remind, transactionType, transactionDate } =
+    req.body;
   const { _id } = req.user;
 
   // Check if Title and UserId are Provieded
@@ -21,7 +22,7 @@ const addTransaction = async (req, res, next) => {
     const newTransaction = new Transactions({
       amount,
       note,
-      transactionDate: new Date(),
+      transactionDate,
       categoryId,
       remind: false,
       transactionType,
@@ -62,8 +63,15 @@ const deleteTransaction = async (req, res, next) => {
 
 //Edit Category
 const editTransaction = async (req, res, next) => {
-  const { transactionId, amount, note, categoryId, remind, transactionType } =
-    req.body;
+  const {
+    transactionId,
+    amount,
+    note,
+    categoryId,
+    remind,
+    transactionType,
+    transactionDate,
+  } = req.body;
   const { _id } = req.user;
 
   // Check if Title and UserId are Provieded
@@ -80,6 +88,7 @@ const editTransaction = async (req, res, next) => {
       note,
       categoryId,
       remind,
+      transactionDate,
       transactionType,
       userId: _id,
     };
